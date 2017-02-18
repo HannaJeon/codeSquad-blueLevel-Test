@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meat charset = 'UTF-8'>
+    <title> Code squad blueLevel test_2 </title>
+</head>
+<body>
+
+<script>
+
+// 문제2: 맵 문자열을 변환하고 출력하는 프로그램
+// 1) 문자열을 읽어 json으로 저장하는 함수
+var map_data="10,5\n++++++++++\n+-P------+\n+--------+\n+-----o--+\n++++++++++\n"
+var json = parseData(map_data)
+
+function parseData(map_string){
+  var obj = {}, data = []
+
+  map = map_string.split('\n').splice(0,1).join('').split(',')
+  data = map_string.split('\n').splice(1).join('').replace(/-/g, ' ')
+
+  obj.width = parseInt(map[0])
+  obj.height = parseInt(map[1])
+  obj.data = data
+
+  return JSON.stringify(obj)
+}
+
+// 2) 1의 json을 2차원 배열로 변환하고 해달 배열을 화면에 출력하는 함수를 작성하세요.. 단 - 는 공백으로 바꾸어 출력합니다.
+function drawMap(json){
+  json = JSON.parse(json)
+  var result = '', count = json.width
+
+  for(var i = 0; i < json.data.length; i++){
+    result += json.data[i];
+    if(i === count-1){
+    result += '\n';
+    count += json.width
+    }
+  }
+  console.log(result)
+}
+ drawMap(json)
+
+</script>
+
+</body>
+</html>

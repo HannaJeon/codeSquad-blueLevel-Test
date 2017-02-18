@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meat charset = 'UTF-8'>
+    <title> Code squad blueLevel test_1 </title>
+</head>
+<body>
+
+<script>
+
+// 문제1: 1240 나라
+// (1) 10진수 숫자를 1240 나라에서 쓰는 숫자로 변환하여 반환해 주는 함수 (리턴 타입은 문자열)
+function to1240(num) {
+  var result = ''
+
+  if(num >= 4){
+    while(num >= 4){
+      result += (num % 4).toString()
+      num = parseInt(num / 4)
+    }
+    result = num.toString() + result.split('').reverse().join('')
+  } else {
+    result = num.toString()
+  }
+
+    result = result.replace(/3/g, '4')
+    return result
+}
+
+//(2) 반대 변환 함수 - 1240 나라 문자열을 입력받아 10진수로 변환해 주는 함수
+function toDec(str){
+  var sum = [], result = 1, count = 1;
+
+  str.split('').reverse().forEach(function(val){
+    sum.push(val * result)
+    result = Math.pow(4,count)
+    count++
+  })
+
+  return sum.reduce(function(a,b){
+    return a + b
+  },0)
+
+}
+
+</script>
+
+</body>
+</html>
